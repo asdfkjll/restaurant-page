@@ -39,11 +39,11 @@ function offersItemComponent(data) {
   return createElementFromHTML(`
     <div class="offers-item">
       <div class="offers-item__img-container">
-	<img class="offers-item__img" src="${data.imgURL}" alt="${data.title}">
+        <img class="offers-item__img" src="${data.imgURL}" alt="${data.title}">
       </div>
       <div class="offers-item__content">
-	<h3 class="offers-item__content--title">${data.title}</h3>
-	<p class="offers-item__content--discount">${data.discount}%</p>
+        <h3 class="offers-item__content--title">${data.title}</h3>
+        <p class="offers-item__content--discount">${data.discount}%</p>
       </div>
     </div>
   `)
