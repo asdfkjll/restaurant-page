@@ -131,7 +131,16 @@ img {
   opacity: 0.9;
 }
 
-#offers {
+.offers-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.offers-header p {
+  color: var(--fiery-red);
+}
+
+.offers-content {
   display: flex;
   align-items: center;
   justify-content: center;

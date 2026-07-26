@@ -14,20 +14,23 @@ function btnComponent({ text, variant, onClick }) {
 
 function sectionComponent({ props, component, id, classList, title, description }) {
   const section = document.createElement('div')
+  const sectionContent = document.createElement('div')
+
+  sectionContent.classList.add(`${id}-content`)
 
   if(id && title && description) {
-    const sectionTitle = createElementFromHTML(`
+    const sectionHeader = createElementFromHTML(`
       <div class="${id}-header">
-	<h1>${title}<h1>
-	<p>${description}<p>
+        <h1>${title}</h1>
+        <p>${description}</p>
       </div>
     `)
-    section.appendChild(sectionTitle)
+    section.appendChild(sectionHeader)
   }
 
   if(props && component) {
     props.forEach((item) => {
-      section.appendChild(component(item))
+      sectionContent.appendChild(component(item))
     })
   }
 
@@ -38,6 +41,8 @@ function sectionComponent({ props, component, id, classList, title, description 
       section.classList.add(item)
     })
   }
+
+  section.appendChild(sectionContent)
 
   return section 
 }
