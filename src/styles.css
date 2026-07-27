@@ -1,7 +1,25 @@
+/* Bowlby One SC */
+@font-face {
+  font-family: 'Bowlby One SC';
+  src: url('./fonts/BowlbyOneSC-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Lilita One */
+@font-face {
+  font-family: 'Lilita One';
+  src: url('./fonts/LilitaOne-Regular.ttf') format('truetype'); /* change to .otf or .woff if your file extensions are different */
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --fiery-red: #d9381f;
+  --fiery-red: #f20;
   --burnt-orange: #e87a24;
-  --golden-ember: #ffb347;
+  --golden-ember: #fffb00;
   --charcoal-black: #2b2d31;
   --ash-gray: #9499a1;
   --bone-white: #faf8f5;
@@ -11,6 +29,10 @@ body {
   font-family: "Helvetica", sans-serif;
   color: var(--charcoal-black);
   background-color: var(--bone-white);
+}
+
+h1, h2, h3, h4, h5, button {
+  font-family: 'Lilita One', cursive, sans-serif;
 }
 
 h1 {
@@ -34,6 +56,12 @@ img {
 .btn-red {
   background: var(--fiery-red);
   color: var(--bone-white);
+  border-radius: 25px;
+}
+
+.btn-yellow {
+  background: var(--golden-ember);
+  color: var(--fiery-red);
   border-radius: 25px;
 }
 
@@ -81,7 +109,6 @@ img {
   color: var(--bone-white);
 }
 
-/* Make the video cover the entire hero area */
 .hero-video {
   position: absolute;
   top: 50%;
@@ -95,18 +122,16 @@ img {
   z-index: 1;
 }
 
-/* Semi-transparent dark overlay for readable text */
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Adjust opacity (0.5 = 50%) */
+  background: rgba(0, 0, 0, 0.5); 
   z-index: 2;
 }
 
-/* Ensure text sits above the video and overlay */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -132,11 +157,12 @@ img {
 }
 
 .offers-header {
+  font-size: 2.1rem;
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 45px;
 }
 
-.offers-header p {
+.offers-header h2 {
   color: var(--fiery-red);
 }
 
@@ -150,13 +176,9 @@ img {
 .offers-item {
   width: 100%;
   max-width: 350px;
-  overflow: hidden; 
   background-color: var(--fiery-red);
   color: var(--bone-white);
-}
-
-.offers-item__content {
-  padding: 15px;
+  border-radius: 25px;
 }
 
 .offers-item__img-container {
@@ -168,13 +190,74 @@ img {
 .offers-item__img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center; 
   display: block;
 }
 
+.offers-item__content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.offers-item__title {
+  font-size: 1.5rem;
+}
+
+.offers-item__discount {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--golden-ember);
+  margin-bottom: 10px;
+}
+
+.offers-content .btn {
+  align-self: flex-end;
+  padding: 5% 10%;
+  border: 3px solid var(--fiery-red);
+}
+
+.values-item {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+  padding: 25px 0;
+}
+
+.values-item__img-container {
+  width: 70%;
+  height: 325px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+}
+
+.values-item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; 
+  border-radius: inherit;
+}
+
+.values-item__text {
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.values-item__text h2 {
+  color: var(--fiery-red);
+  font-size: 2.5rem;
+}
+
+.values-content > :nth-child(2) {
+  flex-direction: row-reverse;
+}
+
 .section {
-  padding: 50px 24px;
+  max-width: 1280px;
+  padding: 80px 24px;
+  margin: auto;
 }
 
 footer {

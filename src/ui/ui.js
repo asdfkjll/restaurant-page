@@ -21,7 +21,7 @@ function sectionComponent({ props, component, id, classList, title, description 
   if(id && title && description) {
     const sectionHeader = createElementFromHTML(`
       <div class="${id}-header">
-        <h1>${title}</h1>
+        <h2>${title}</h2>
         <p>${description}</p>
       </div>
     `)

@@ -36,36 +36,56 @@ function heroComponent({ title, description, btnList = [] }) {
 }
 
 function offersItemComponent(data) {
-  return createElementFromHTML(`
+  const offerItem = createElementFromHTML(`
     <div class="offers-item">
       <div class="offers-item__img-container">
         <img class="offers-item__img" src="${data.imgURL}" alt="${data.title}">
       </div>
-      <div class="offers-item__content">
-        <h3 class="offers-item__content--title">${data.title}</h3>
-        <p class="offers-item__content--discount">${data.discount}%</p>
-      </div>
     </div>
   `)
+
+  const offerContent = createElementFromHTML(`
+    <div class="offers-item__content">
+      <h3 class="offers-item__title">${data.title}</h3>
+      <p class="offers-item__discount">${data.discount}% OFF</p>
+    </div>
+  `)
+
+  const btn = btnComponent({
+    text: 'SEE MORE',
+    variant: 'yellow',
+    onClick: () => { alert('SEE MORE') }
+  })
+
+  offerContent.appendChild(btn)
+  offerItem.appendChild(offerContent)
+
+  return offerItem
 }
 
 function renderOfferView(data) {
   const section = sectionComponent({ 
     props: data, 
-    component: offersItemComponent, 
     id: 'offers', 
     classList: ['section'],
-    title: 'MOST WANTED',
-    description: 'LIMITED TIME OFFERS'
+    title: 'LIMITED TIME OFFERS',
+    description: 'MOST WANTED ',
+    component: offersItemComponent
   })
   return section 
 }
 
-function valuesItemComponent(data) {
+function valuesItemComponent({ title, description, imgURL }) {
   return createElementFromHTML(`
     <div class="values-item">
-      <h2>${data.title}</h2>
-      <p>${data.description}</p>
+      <div class="values-item__text">
+        <h2>${title}</h2>
+        <p>${description}</p>
+      </div>
+      
+      <div class="values-item__img-container">
+        <img class="values-item__img" src="${imgURL}" alt="${title}">
+      </div>
     </div>
   `)
 }
@@ -73,9 +93,9 @@ function valuesItemComponent(data) {
 function renderValuesView(data) {
   const section = sectionComponent({
     props: data, 
-    component: valuesItemComponent, 
     id: 'values', 
-    classList: ['section']
+    classList: ['section'],
+    component: valuesItemComponent
   })
   return section 
 }

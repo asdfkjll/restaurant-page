@@ -12,28 +12,31 @@ const hero = heroComponent({
   description: 'NO RESERVATIONS, JUST ORDER ONLINE AT ANY MOMENT AND ENJOY', 
   btnList: 
   [
-    {text: 'Order Now', variant: 'red', onClick: function() { alert('FUCK YOU! we aint taking your order') }},
-    {text: 'Contact Us', variant: 'red', onClick: function() { alert('FUCK YOU! we aint contacting you') }},
+    { text: 'Order Now', variant: 'red', onClick: function() { alert('FUCK YOU! we aint taking your order') } },
+    { text: 'Contact Us', variant: 'red', onClick: function() { alert('FUCK YOU! we aint contacting you') } },
   ] 
 })
 const values = renderValuesView([
   {
     title: "SOMETHING FOR EVERYONE",
-    description: "Our menu is designed to sastify all kind of tastes",
+    description: "Our menu caters to all tastes, offering a wide range of dishes so everyone in your group finds something they love.",
+    imgURL: '../src/img/together.jpg',
   }, 
   {
     title: "QUALITY IS OUR PRIORITY",
-    description: "We offer the best products to our customers",
+    description: "We partner only with suppliers who share our commitment to fresh, high-quality ingredients.",
+    imgURL: '../src/img/fresh.jpg',
   },
   {
-    title: "MORE THAN FOOD, IT'S OUR CULTURE",
-    description: "Diversity and Tradition",
+    title: "WE SHARE OUR CULTURE",
+    description: "Food is our way of sharing tradition and history. We honor our community's diverse roots to offer a taste of true heritage.",
+    imgURL: '../src/img/culture.jpg',
   }
 ])
 const offers = renderOfferView([
-  menuService.getItem('Pizza'),
-  menuService.getItem('Pizza1'),
-  menuService.getItem('Pizza2'),
+  menuService.getItem('Double Meat Burguer'),
+  menuService.getItem('Fry Chicken'),
+  menuService.getItem('Ketchup Cup'),
 ])
 
 const menu = renderMenuView(menuService)
