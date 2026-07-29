@@ -69,9 +69,10 @@ function renderOfferView(data) {
     id: 'offers', 
     classList: ['section'],
     title: 'LIMITED TIME OFFERS',
-    description: 'MOST WANTED ',
+    description: 'MOST WANTED',
     component: offersItemComponent
   })
+
   return section 
 }
 
@@ -100,8 +101,124 @@ function renderValuesView(data) {
   return section 
 }
 
+function renderAboutView() {
+  return sectionComponent({
+    props: [
+      {
+	text: 'About Us', 
+	variant: 'white',
+	onClick: () => { alert(this.text) } 
+      },
+      {
+	text: 'Contact Us', 
+	variant: 'white',
+	onClick: () => { alert(this.text) } 
+      }
+    ],
+    id: 'about',
+    classList: ['white'],
+    title: 'WANT TO KNOW MORE ABOUT US?',
+    description: ' ',
+    component: btnComponent
+  })
+}
+
+function promotionsItemComponent({ title, description, imgURL, btnText, btnOnClick }) {
+  const promotion = createElementFromHTML(`
+    <div class="promotions-item"></div>
+  `)
+
+  const promotionContainer = createElementFromHTML(`
+    <div class="promotions-item__container">
+      <h2>${title}</h2>
+      <p>${description}</p>
+    </div>
+  `)
+
+  const btn = btnComponent({
+    text: btnText, 
+    variant: 'red',
+    onClick: btnOnClick  
+  })
+
+  promotionContainer.appendChild(btn)
+
+  const promotionImg = createElementFromHTML(`
+    <div class="promotions-item__img-container">
+      <img class="promotions-item__img" src="${imgURL}" alt="${title}">
+    </div>
+  `)
+
+  promotion.appendChild(promotionContainer)
+  promotion.appendChild(promotionImg)
+
+  return promotion
+}
+
+function renderPromotionsView(data) {
+  const section = sectionComponent({
+    props: data, 
+    id: 'promotions', 
+    classList: ['section'],
+    component: promotionsItemComponent
+  })
+  return section 
+}
+
+function renderAppView({ imgURL, title, tagline }) {
+  const section = createElementFromHTML(`
+    <div class="app section"></div>
+  `)
+  const sectionContainer = createElementFromHTML(`
+    <div class="app__container"></div>
+  `)
+  const sectionImg = createElementFromHTML(`
+    <div class="app__img-container">
+      <img src="${imgURL}" class="app__img">
+    </div>
+  `)
+  const sectionContent = createElementFromHTML(`
+    <div class="app__content">
+      <h2 class="app__title">${title}</h2>
+      <p class="app__tagline">${tagline}</p>
+    </div>
+  `)
+
+  sectionContainer.appendChild(sectionImg)
+  sectionContainer.appendChild(sectionContent)
+  section.appendChild(sectionContainer)
+
+  return section
+}
+
+function renderCtaView() {
+  return sectionComponent({
+    props: [
+      {
+	text: 'ORDER NOW', 
+	variant: 'red',
+	onClick: () => { alert('order') } 
+      },
+      {
+	text: 'SEE MENU', 
+	variant: 'red',
+	onClick: () => { alert('menu') } 
+      }
+    ],
+    id: 'cta',
+    classList: ['section'],
+    title: 'READY TO ORDER?',
+    description: ' ',
+    component: btnComponent
+  })
+}
+
 export { 
   heroComponent,
   renderValuesView,
   renderOfferView,
+  renderAboutView,
+  renderPromotionsView,
+  renderAppView,
+  renderCtaView
 }

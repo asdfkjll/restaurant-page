@@ -1,6 +1,6 @@
 import './styles.css'
 import './reset.css'
-import { heroComponent, renderOfferView, renderValuesView } from './ui/homepage.js'
+import { heroComponent, renderAboutView, renderAppView, renderOfferView, renderPromotionsView, renderValuesView, renderCtaView } from './ui/homepage.js'
 import { renderMenuView } from './ui/menu.js'
 import menuService from './services/menu-service.js'
 
@@ -38,13 +38,42 @@ const offers = renderOfferView([
   menuService.getItem('Fry Chicken'),
   menuService.getItem('Ketchup Cup'),
 ])
-
+const offersBg = document.createElement('div') 
+offersBg.classList.add('offers-bg')
 const menu = renderMenuView(menuService)
+const about = renderAboutView()
+const promotions = renderPromotionsView([
+  {
+    title: "GET REWARDED WITH EVERY BITE!",
+    description: "Create a HOT GRILLS account today to unlock an exclusive welcome gift! Earn points every time you order online, in the app, or in-store. The more you taste, the more you earn! Sign Up Today & Claim Your Welcome Gift.",
+    imgURL: '../src/img/sign-up-rewards.png',
+    btnText: 'SIGN UP',
+    btnOnClick: () => { alert('ACCOUNT CREATED') }
+  }, 
+  {
+    title: "GIVE THE GIFT OF FLAVOR!",
+    description: "Treat your friends, family, or coworkers to their favorite flame-grilled meals. Choose any amount from $10 to $200, personalize your message, and send instantly online or pick up a physical card in-store! Send a Gift Today!",
+    imgURL: '../src/img/giftcard.png',
+    btnText: 'BUY GIFTCARD',
+    btnOnClick: () => { alert('$200 GIFTCARD') }
+  }, 
+])
+const app = renderAppView({
+  imgURL: '../src/img/app.png',
+  title: '<span class="app__title--accent">REWARDS</span> WITH EVERY BITE',
+  tagline: 'SOMETHING FOR EVERYONE | QUALITY IS OUR PRIORITY | WE SHARE OUR CULTURE'
+})
+const callToAction = renderCtaView()
 
 function renderHomePage() {
   content.appendChild(hero)
   content.appendChild(offers)
+  content.appendChild(offersBg)
   content.appendChild(values)
+  content.appendChild(about)
+  content.appendChild(promotions)
+  content.appendChild(app)
+  content.appendChild(callToAction)
 }
 
 function renderMenuPage() {

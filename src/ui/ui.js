@@ -22,7 +22,7 @@ function sectionComponent({ props, component, id, classList, title, description 
     const sectionHeader = createElementFromHTML(`
       <div class="${id}-header">
         <h2>${title}</h2>
-        <p>${description}</p>
+        <h3>${description}</h3>
       </div>
     `)
     section.appendChild(sectionHeader)
