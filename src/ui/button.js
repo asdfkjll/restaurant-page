@@ -1,5 +1,4 @@
 import { createElementFromHTML } from './ui.js'
-import './button.css'
 
 export default function({ text, variant, onClick }) {
   const btn = createElementFromHTML(`
