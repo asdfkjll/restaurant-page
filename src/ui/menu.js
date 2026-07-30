@@ -1,4 +1,4 @@
-import { btnComponent } from './ui.js' 
+import buttonComponent from './button.js'
 
 function menuItemComponent(menuItem) {
   const element = document.createElement('div')
@@ -11,7 +11,7 @@ function menuItemComponent(menuItem) {
     <p>$${menuItem.priceUSD}</p>
   `
 
-  const orderBtn = btnComponent('ADD TO THE ORDER', () => alert(`${menuItem.title} added to the order`))
+  const orderBtn = buttonComponent('ADD TO THE ORDER', () => alert(`${menuItem.title} added to the order`))
   element.appendChild(orderBtn)
 
   return element
