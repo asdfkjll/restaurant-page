@@ -2,22 +2,61 @@
   {
     "category": "burguers",
     "items": [
-      {
-        "title": "double meat burger",
-        "description": "Sink your teeth into the ultimate comfort food experience with this double meat burger, featuring two juicy, seasoned beef patties seared to perfection and stacked high for maximum flavor in every bite. Melted cheddar cheese cascades down the sides, seamlessly binding the rich, savory layers together, while crisp lettuce, ripe tomatoes, and tangy pickles add a fresh, satisfying crunch. Wrapped in a warm, toasted brioche bun with a generous slather of signature sauce, this hearty creation is a delicious, indulgent feast designed to satisfy even the biggest appetites.",
-        "imgName": "offer-burguer.png",
-        "priceUSD": 19.99,
-        "offer": {
-          "discount": 20
-        }
-      },
-      {
-        "title": "fish burguer",
-        "description": "its a fish burger.",
-        "imgName": "offer-burguer.png",
-        "priceUSD": 19.99
-      }
-    ]
+  {
+    "title": "double meat burger",
+    "description": "Sink your teeth into the ultimate comfort food experience with this double meat burger, featuring two juicy, seasoned beef patties seared to perfection and stacked high for maximum flavor in every bite. Melted cheddar cheese cascades down the sides, seamlessly binding the rich, savory layers together, while crisp lettuce, ripe tomatoes, and tangy pickles add a fresh, satisfying crunch. Wrapped in a warm, toasted brioche bun with a generous slather of signature sauce, this hearty creation is a delicious, indulgent feast designed to satisfy even the biggest appetites.",
+    "imgName": "offer-burguer.png",
+    "priceUSD": 19.99,
+    "offer": {
+      "discount": 20
+    }
+  },
+  {
+    "title": "classic bacon cheeseburger",
+    "description": "A timeless favorite loaded with a thick beef patty, crispy smoked bacon, melted American cheese, fresh lettuce, red onion, and creamy mayo served on a toasted sesame bun.",
+    "imgName": "classic-bacon-burguer.png",
+    "priceUSD": 14.99,
+    "offer": {
+      "discount": 15
+    }
+  },
+  {
+    "title": "spicy jalapeño crunch burger",
+    "description": "Turn up the heat with a grilled beef patty topped with pepper jack cheese, fried jalapeño coins, spicy chipotle aioli, and fresh crunchy cabbage slaw on a potato bun.",
+    "imgName": "spicy-jalapeno-burguer.png",
+    "priceUSD": 16.50
+  },
+  {
+    "title": "truffle mushroom swiss burger",
+    "description": "An elevated gourmet experience featuring savory sautéed cremini mushrooms, melted Swiss cheese, caramelized onions, and black truffle garlic butter on a soft artisanal brioche bun.",
+    "imgName": "truffle-mushroom-burguer.png",
+    "priceUSD": 21.99,
+    "offer": {
+      "discount": 25
+    }
+  },
+  {
+    "title": "bbq smoked brisket burger",
+    "description": "A meat lover's dream combining a beef patty with slow-smoked pulled brisket, tang bbq sauce, crispy onion rings, and smoked gouda on a charred pretzel bun.",
+    "imgName": "bbq-brisket-burguer.png",
+    "priceUSD": 18.75
+  },
+  {
+    "title": "avocado plant-based burger",
+    "description": "A delicious savory plant-based patty topped with fresh sliced avocado, vegan cheddar cheese, arugula, sliced tomatoes, and lemon-herb mayo on a whole grain bun.",
+    "imgName": "avocado-plant-burguer.png",
+    "priceUSD": 15.99
+  },
+  {
+    "title": "crispy chicken zinger burger",
+    "description": "Golden-fried crispy chicken breast coated in hot spices, layered with sweet pickles, shredded lettuce, and creamy buttermilk ranch on a toasted soft roll.",
+    "imgName": "crispy-chicken-burguer.png",
+    "priceUSD": 13.99,
+    "offer": {
+      "discount": 10
+    }
+  }
+]
   },
   {
     "category": "fish & chicken",
