@@ -1,30 +1,44 @@
+import { createElementFromHTML, createSection } from './ui.js'
 import buttonComponent from './button.js'
+import menu from '../services/menu-service.json'
+import { getCategory } from '../services/menu-utils.js'
+import { imgContext, getImgFromContext } from './homepage.js'
 
-function menuItemComponent(menuItem) {
-  const element = document.createElement('div')
-  element.classList.add('menu-item')
+function menuItemComponent(item) {
+  const itemElement = createElementFromHTML(`
+    <div class="menu-item">
+      <div class="menu-item__img-wrapper">
+        <img src="${getImgFromContext(item.imgName, imgContext)}" alt="${item.title}">
+      </div>
 
-  element.innerHTML = `
-    <h2>${menuItem.title} (${menuItem.id})</h2>
-    <img src="${menuItem.imgURL}" alt="${menuItem.title}">
-    <p>${menuItem.description}</p>
-    <p>$${menuItem.priceUSD}</p>
-  `
+      <div class="menu-item__content">
+        <h4 class="menu-item__title">${item.title}</h4>
+        <span class="menu-item__price">$${item.priceUSD}</span>
+      </div>
+    </div>
+  `)
 
-  const orderBtn = buttonComponent('ADD TO THE ORDER', () => alert(`${menuItem.title} added to the order`))
-  element.appendChild(orderBtn)
+  itemElement.querySelector('.menu-item__content').appendChild(
+    buttonComponent({
+      text: 'ORDER',
+      variant: 'red',
+      onClick: () => alert(`${item.title}, added to the order!`)
+    })
+  )
 
-  return element
+  return itemElement
 }
 
-export function renderMenuView(menu) {
-  const menuContainer = document.createElement('div')
-  menuContainer.classList.add('menu')
+const menuView = createSection({
+  classList: ['menu'],
+  header: {
+    title: 'Menu'
+  },
+  propsList: getCategory(menu, 'burguers').items,
+  component: menuItemComponent
+})
 
-  menu.items.forEach((item) => {
-    const menuItem = menuItemComponent(item)
-    menuContainer.appendChild(menuItem)
-  })
-
-  return menuContainer
+export {
+  menuView
 }
+

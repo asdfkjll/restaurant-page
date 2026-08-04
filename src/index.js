@@ -1,6 +1,7 @@
 import './reset.css'
 import './styles.css'
 import { heroView, valuesView, offersView, aboutView, promotionsView, appView, ctaView } from './ui/homepage.js'
+import { menuView } from './ui/menu.js'
 
 const content = document.querySelector('#content')
 const navMenu = document.querySelector('.header__navbar')
@@ -16,6 +17,7 @@ function renderHomePage() {
 }
 
 function renderMenuPage() {
+  content.appendChild(menuView)
 }
 
 function renderAboutPage() {
@@ -25,7 +27,7 @@ navMenu.addEventListener('click', (e) => {
   const targetBtn = e.target.id
   content.innerHTML = ``
 
-  switch(targetBtn) {
+  switch (targetBtn) {
     case 'home-btn':
       renderHomePage()
       break

@@ -1,31 +1,47 @@
-import { createElementFromHTML, createSection } from './ui.js' 
+import './homepage.css'
+import { createElementFromHTML, createSection } from './ui.js'
 import buttonComponent from './button.js'
-import menuService from '../services/menu-service.js'
+import menu from '../services/menu-service.json'
+import { getAllOffers } from '../services/menu-utils.js'
+import heroVideo from '../vids/hero.mp4'
+
+const imgContext = import.meta.webpackContext('../img/', {
+  recursive: false,
+  regExp: /\.(png|jpe?g|svg|webp|mp4)$/,
+})
+
+function getImgFromContext(imgName, context) {
+  try {
+    return context(`./${imgName}`)
+  } catch (err) {
+    console.warn(`${err}: cannot load the image, please check the context direction and the name of the img file`)
+  }
+}
 
 function heroVideoComponent({ title, description, videoURL, btnList = [] }) {
   const hero = createElementFromHTML(`
     <section class="hero">
       <video autoplay muted loop playsinline class="hero__video">
-	<source src="${videoURL}" type="video/mp4">
-	Your browser does not support the video tag.
+	      <source src="${videoURL}" type="video/mp4">
+	      Your browser does not support the video tag.
       </video>
 
       <div class="hero__overlay"></div>
 
       <div class="hero__content">
-	<h1 class="hero__title">${title}</h1>
-	<p class="hero__description">${description}</p>
-	<div class="hero__btn-container"></div>
+	      <h1 class="hero__title">${title}</h1>
+	      <p class="hero__description">${description}</p>
+	      <div class="hero__btn-container"></div>
       </div>
     </section>
   `)
 
   btnList.forEach((item) => {
-    const btn = buttonComponent({ 
-      text: item.text, 
+    const btn = buttonComponent({
+      text: item.text,
       variant: item.variant,
-      onClick: item.onClick 
-    }) 
+      onClick: item.onClick
+    })
 
     hero.querySelector('.hero__btn-container').appendChild(btn)
   })
@@ -37,12 +53,12 @@ function offerCardComponent(props) {
   const card = createElementFromHTML(`
     <div class="offers-card">
       <div class="offers-card__img-wrapper">
-        <img class="offers-card__img" src="${props.imgURL}" alt="${props.title}">
+        <img class="offers-card__img" src="${getImgFromContext(props.imgName, imgContext)}" alt="${props.title}">
       </div>
 
       <div class="offers-card__content">
-	<h4 class="offers-card__title">${props.title}</h4>
-	<p class="offers-card__discount">${props.discount}% OFF</p>
+	      <h4 class="offers-card__title">${props.title}</h4>
+	      <p class="offers-card__discount">${props.offer.discount}% OFF</p>
       </div>
     </div>
   `)
@@ -56,7 +72,7 @@ function offerCardComponent(props) {
   return card
 }
 
-function valuesItemComponent({ title, description, imgURL }) {
+function valuesItemComponent({ title, description, imgName }) {
   return createElementFromHTML(`
     <div class="values-item">
       <div class="values-item__content">
@@ -65,22 +81,22 @@ function valuesItemComponent({ title, description, imgURL }) {
       </div>
       
       <div class="values-item__img-wrapper">
-        <img class="values-item__img" src="${imgURL}" alt="${title}">
+        <img class="values-item__img" src="${getImgFromContext(imgName, imgContext)}" alt="${title}">
       </div>
     </div>
   `)
 }
 
-function promotionsItemComponent({ title, description, imgURL, btnText, btnOnClick }) {
+function promotionsItemComponent({ title, description, imgName, btnText, btnOnClick }) {
   const promotion = createElementFromHTML(`
     <div class="promotions-item">
       <div class="promotions-item__content">
-	<h2 class="promotions-item__title">${title}</h2>
-	<p class="promotions-item__description">${description}</p>
+	      <h2 class="promotions-item__title">${title}</h2>
+	      <p class="promotions-item__description">${description}</p>
       </div>
 
       <div class="promotions-item__img-wrapper">
-	<img class="promotions-item__img" src="${imgURL}" alt="${title}">
+	      <img class="promotions-item__img" src="${getImgFromContext(imgName, imgContext)}" alt="${title}">
       </div>
     </div>
   `)
@@ -96,45 +112,41 @@ function promotionsItemComponent({ title, description, imgURL, btnText, btnOnCli
   return promotion
 }
 
-function appComponent({ imgURL, title, tagline }) {
+function appComponent({ imgName, title, tagline }) {
   return createElementFromHTML(`
     <section class="app">
       <div class="app__container">
-	<div class="app__img-wrapper">
-	  <img src="${imgURL}" class="app__img">
-	</div>
+	      <div class="app__img-wrapper">
+	        <img src="${getImgFromContext(imgName, imgContext)}" class="app__img">
+	      </div>
 
-	<div class="app__content">
-	  <h2 class="app__title">${title}</h2>
-	  <p class="app__tagline">${tagline}</p>
-	</div>
+	      <div class="app__content">
+	        <h2 class="app__title">${title}</h2>
+	        <p class="app__tagline">${tagline}</p>
+	      </div>
       </div>
     </section>
   `)
 }
 
 const heroView = heroVideoComponent({
-  title: 'HOT GRILLS', 
-  description: 'NO RESERVATIONS, JUST ORDER ONLINE AT ANY MOMENT AND ENJOY', 
-  videoURL: '../src/vids/hero.mp4',
-  btnList: 
-  [
-    { text: 'Order Now', variant: 'red', onClick: function() { alert('FUCK YOU! we aint taking your order') } },
-    { text: 'Contact Us', variant: 'red', onClick: function() { alert('FUCK YOU! we aint contacting you') } }
-  ] 
+  title: 'HOT GRILLS',
+  description: 'NO RESERVATIONS, JUST ORDER ONLINE AT ANY MOMENT AND ENJOY',
+  videoURL: heroVideo,
+  btnList:
+    [
+      { text: 'Order Now', variant: 'red', onClick: function () { alert('FUCK YOU! we aint taking your order') } },
+      { text: 'Contact Us', variant: 'red', onClick: function () { alert('FUCK YOU! we aint contacting you') } }
+    ]
 })
 
-const offersView = createSection({ 
+const offersView = createSection({
   classList: ['offers'],
   header: {
     title: 'LIMITED TIME OFFERS',
     subtitle: 'MOST WANTED'
   },
-  propsList: [
-    menuService.getItem('Double Meat Burguer'),
-    menuService.getItem('Fry Chicken'),
-    menuService.getItem('Ketchup Cup')
-  ], 
+  propsList: getAllOffers(menu),
   component: offerCardComponent
 })
 
@@ -142,101 +154,103 @@ offersView.appendChild(createElementFromHTML(`
   <div class="offers__bg"></div>
 `))
 
-const valuesView = createSection({ 
+const valuesView = createSection({
   classList: ['values'],
   propsList: [
     {
-      title: "SOMETHING FOR EVERYONE",
+      title: 'SOMETHING FOR EVERYONE',
       description: "Our menu caters to all tastes, offering a wide range of dishes so everyone in your group finds something they love.",
-      imgURL: '../src/img/together.jpg',
-    }, 
+      imgName: 'together.jpg'
+    },
     {
       title: "QUALITY IS OUR PRIORITY",
       description: "We partner only with suppliers who share our commitment to fresh, high-quality ingredients.",
-      imgURL: '../src/img/fresh.jpg',
+      imgName: 'fresh.jpg'
     },
     {
-      title: "WE SHARE OUR CULTURE",
+      title: 'WE SHARE OUR CULTURE',
       description: "Food is our way of sharing tradition and history. We honor our community's diverse roots to offer a taste of true heritage.",
-      imgURL: '../src/img/culture.jpg',
+      imgName: 'culture.jpg'
     }
-  ], 
+  ],
   component: valuesItemComponent
 })
 
-const aboutView = createSection({ 
+const aboutView = createSection({
   classList: ['about'],
   header: {
     title: 'WANT TO KNOW MORE ABOUT US?'
   },
   propsList: [
     {
-      text: 'About Us', 
+      text: 'About Us',
       variant: 'white',
-      onClick: () => { alert('about us') } 
+      onClick: () => { alert('about us') }
     },
     {
-      text: 'Contact Us', 
+      text: 'Contact Us',
       variant: 'white',
-      onClick: () => { alert('contact us') } 
+      onClick: () => { alert('contact us') }
     }
-  ], 
+  ],
   component: buttonComponent
 })
 
-const promotionsView = createSection({ 
+const promotionsView = createSection({
   classList: ['promotions'],
   propsList: [
     {
       title: "GET REWARDED WITH EVERY BITE!",
       description: "Create a HOT GRILLS account today to unlock an exclusive welcome gift! Earn points every time you order online, in the app, or in-store. The more you taste, the more you earn! Sign Up Today & Claim Your Welcome Gift.",
-      imgURL: '../src/img/sign-up-rewards.png',
+      imgName: 'sign-up-rewards.png',
       btnText: 'SIGN UP',
       btnOnClick: () => { alert('ACCOUNT CREATED') }
-    }, 
+    },
     {
       title: "GIVE THE GIFT OF FLAVOR!",
       description: "Treat your friends, family, or coworkers to their favorite flame-grilled meals. Choose any amount from $10 to $200, personalize your message, and send instantly online or pick up a physical card in-store! Send a Gift Today!",
-      imgURL: '../src/img/giftcard.png',
+      imgName: 'giftcard.png',
       btnText: 'BUY GIFTCARD',
       btnOnClick: () => { alert('$200 GIFTCARD') }
     }
-  ], 
+  ],
   component: promotionsItemComponent
 })
 
 const appView = appComponent({
-  imgURL: '../src/img/app.png',
+  imgName: 'app.png',
   title: '<span class="app__title--accent">REWARDS</span> WITH EVERY BITE',
   tagline: 'SOMETHING FOR EVERYONE | QUALITY IS OUR PRIORITY | WE SHARE OUR CULTURE'
 })
 
-const ctaView = createSection({ 
+const ctaView = createSection({
   classList: ['cta'],
   header: {
     title: 'READY TO ORDER?',
   },
   propsList: [
     {
-      text: 'ORDER NOW', 
+      text: 'ORDER NOW',
       variant: 'red',
-      onClick: () => { alert('order') } 
+      onClick: () => { alert('order') }
     },
     {
-      text: 'SEE MENU', 
+      text: 'SEE MENU',
       variant: 'red',
-      onClick: () => { alert('menu') } 
+      onClick: () => { alert('menu') }
     }
-  ], 
+  ],
   component: buttonComponent
 })
 
-export { 
+export {
   heroView,
   offersView,
   valuesView,
   aboutView,
   promotionsView,
   appView,
-  ctaView
+  ctaView,
+  imgContext,
+  getImgFromContext
 }
