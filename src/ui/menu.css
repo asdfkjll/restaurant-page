@@ -1,9 +1,50 @@
 .menu__content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 50px;
 }
 
 .menu-item {
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .menu-item__img-wrapper {
+        flex: 1;
+        width: 100%;
+        aspect-ratio: 1 / 1; 
+    }
+
+    .menu-item__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center; 
+        display: block;
+    }
+
+    .menu-item__content {
+        flex: 1;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+
+        & .btn {
+            align-self: flex-end;
+        }
+    }
+
+    .menu-item__text-wrapper {
+        margin-bottom: 15px;
+    }
+
+    .menu-item__offer-tag {
+        color: var(--color-bone-white);
+        background-color: red; 
+        padding: 10px;
+        font-weight: 800;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
 }

@@ -9,21 +9,23 @@ function menuItemComponent(item) {
   const itemElement = createElementFromHTML(`
     <div class="menu-item">
       <div class="menu-item__img-wrapper">
-        <img src="${getImgFromContext(item.imgName, imgContext)}" alt="${item.title}">
+        <img class="menu-item__img" src="${getImgFromContext(item.imgName, imgContext)}" alt="${item.title}">
       </div>
 
       <div class="menu-item__content">
-        <h4 class="menu-item__title">${item.title}</h4>
-        <span class="menu-item__price">$${item.priceUSD}</span>
+        <div class="menu-item__text-wrapper">
+          <h4 class="menu-item__title">${item.title}</h4>
+          <span class="menu-item__price">$${item.priceUSD}</span>
+        </div>
       </div>
     </div>
   `)
 
-  if(item.offer) {
+  if (item.offer) {
     const offerTag = createElementFromHTML(`
-      <span class="menu-item__offer-tag">OFFER!</span>  
+      <span class="menu-item__offer-tag">${item.offer.discount}% OFF!</span>  
     `)
-    itemElement.querySelector('.menu-item__content').appendChild(offerTag)
+    itemElement.appendChild(offerTag)
   }
 
   itemElement.querySelector('.menu-item__content').appendChild(
@@ -42,7 +44,7 @@ const menuView = createSection({
   header: {
     title: 'Menu'
   },
-  propsList: getCategory(menu, 'burguers').items,
+  propsList: getCategory(menu, 'burgers').items,
   component: menuItemComponent
 })
 
